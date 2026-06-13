@@ -11,11 +11,11 @@ import org.jetbrains.annotations.NotNull;
  * PlaceholderAPI expansion for DeluxePlayerOptionsReD.
  * Provides placeholders for player option states.
  */
-public class PlaceholderExpansion extends PlaceholderExpansion {
+public class DPOExpansion extends PlaceholderExpansion {
 
     private final DeluxePlayerOptions plugin;
 
-    public PlaceholderExpansion(DeluxePlayerOptions plugin) {
+    public DPOExpansion(DeluxePlayerOptions plugin) {
         this.plugin = plugin;
     }
 

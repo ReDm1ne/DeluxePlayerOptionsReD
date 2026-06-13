@@ -74,7 +74,7 @@ public class MenuManager implements InventoryHolder {
         if (menuConfig.contains("item-on")) {
             itemOnTemplate = loadItemFromConfig("item-on");
         } else {
-            itemOnTemplate = MaterialCompat.getOnIndicator();
+            itemOnTemplate = new ItemStack(MaterialCompat.getOnIndicator());
             ItemMeta meta = itemOnTemplate.getItemMeta();
             meta.setDisplayName(ColorUtils.translate("&a&lOn"));
             itemOnTemplate.setItemMeta(meta);
@@ -84,7 +84,7 @@ public class MenuManager implements InventoryHolder {
         if (menuConfig.contains("item-off")) {
             itemOffTemplate = loadItemFromConfig("item-off");
         } else {
-            itemOffTemplate = MaterialCompat.getOffIndicator();
+            itemOffTemplate = new ItemStack(MaterialCompat.getOffIndicator());
             ItemMeta meta = itemOffTemplate.getItemMeta();
             meta.setDisplayName(ColorUtils.translate("&c&lOff"));
             itemOffTemplate.setItemMeta(meta);
@@ -105,7 +105,10 @@ public class MenuManager implements InventoryHolder {
                     item.slot = menuConfig.getInt(key + ".slot", 0);
                     item.itemUseEnabled = menuConfig.getBoolean(key + ".itemuse-enable", false);
                     item.itemUseSlot = menuConfig.getInt(key + ".itemuse-slot", 0);
-                    item.lore = menuConfig.getStringList(key + ".lore", new ArrayList<>());
+                    item.lore = menuConfig.getStringList(key + ".lore");
+                    if (item.lore == null) {
+                        item.lore = new ArrayList<>();
+                    }
                     item.enabled = enabled;
                     menuItems.put(key, item);
                 }
@@ -131,10 +134,12 @@ public class MenuManager implements InventoryHolder {
         String name = menuConfig.getString(path + ".name", "");
         meta.setDisplayName(ColorUtils.translate(name));
 
-        List<String> lore = menuConfig.getStringList(path + ".lore", new ArrayList<>());
+        List<String> lore = menuConfig.getStringList(path + ".lore");
         List<String> translatedLore = new ArrayList<>();
-        for (String line : lore) {
-            translatedLore.add(ColorUtils.translate(line));
+        if (lore != null) {
+            for (String line : lore) {
+                translatedLore.add(ColorUtils.translate(line));
+            }
         }
         meta.setLore(translatedLore);
 
@@ -239,8 +244,10 @@ public class MenuManager implements InventoryHolder {
 
         // Set lore
         List<String> lore = new ArrayList<>();
-        for (String line : item.lore) {
-            lore.add(ColorUtils.translate(line));
+        if (item.lore != null) {
+            for (String line : item.lore) {
+                lore.add(ColorUtils.translate(line));
+            }
         }
         meta.setLore(lore);
 
@@ -265,8 +272,10 @@ public class MenuManager implements InventoryHolder {
         meta.setDisplayName(ColorUtils.translate(closeItem.name));
 
         List<String> lore = new ArrayList<>();
-        for (String line : closeItem.lore) {
-            lore.add(ColorUtils.translate(line));
+        if (closeItem.lore != null) {
+            for (String line : closeItem.lore) {
+                lore.add(ColorUtils.translate(line));
+            }
         }
         meta.setLore(lore);
 

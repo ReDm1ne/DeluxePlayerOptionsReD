@@ -1,6 +1,6 @@
 package net.redm1ne.deluxeplayeroptionsred;
 
-import net.redm1ne.deluxeplayeroptionsred.api.PlaceholderExpansion;
+import net.redm1ne.deluxeplayeroptionsred.api.DPOExpansion;
 import net.redm1ne.deluxeplayeroptionsred.command.CommandManager;
 import net.redm1ne.deluxeplayeroptionsred.config.ConfigManager;
 import net.redm1ne.deluxeplayeroptionsred.config.MessageManager;
@@ -75,7 +75,7 @@ public final class DeluxePlayerOptions extends JavaPlugin {
 
         // Register PlaceholderAPI expansion if available
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            new PlaceholderExpansion(this).register();
+            new DPOExpansion(this).register();
             getLogger().info("Hooked into PlaceholderAPI");
         }
 

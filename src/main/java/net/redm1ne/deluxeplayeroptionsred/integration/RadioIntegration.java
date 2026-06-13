@@ -4,9 +4,11 @@ import net.redm1ne.deluxeplayeroptionsred.DeluxePlayerOptions;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.Method;
+
 /**
  * Abstract radio integration for JukeBox plugins.
- * Supports both icJukeBox and JukeBox plugins.
+ * Supports both icJukeBox and JukeBox plugins using reflection.
  */
 public class RadioIntegration {
 
@@ -83,13 +85,33 @@ public class RadioIntegration {
     }
 
     /**
-     * Adapter for icJukeBox plugin.
+     * Adapter for icJukeBox plugin using reflection.
      */
     private static class IcJukeBoxAdapter implements RadioAdapter {
+        private Class<?> apiClass;
+        private Method toggleMethod;
+        private Method enableMethod;
+        private Method disableMethod;
+        private Method hasRadioMethod;
+
+        public IcJukeBoxAdapter() {
+            try {
+                apiClass = Class.forName("net.darkium.forge.icJukeBox.api.JukeBoxAPI");
+                toggleMethod = apiClass.getMethod("toggleRadio", Player.class);
+                enableMethod = apiClass.getMethod("enableRadio", Player.class);
+                disableMethod = apiClass.getMethod("disableRadio", Player.class);
+                hasRadioMethod = apiClass.getMethod("hasRadioEnabled", Player.class);
+            } catch (Exception e) {
+                // API not available
+            }
+        }
+
         @Override
         public boolean toggleRadio(Player player) {
+            if (toggleMethod == null) return false;
             try {
-                return net.darkium.forge.icJukeBox.api.JukeBoxAPI.toggleRadio(player);
+                Object result = toggleMethod.invoke(null, player);
+                return result instanceof Boolean && (Boolean) result;
             } catch (Exception e) {
                 return false;
             }
@@ -97,22 +119,26 @@ public class RadioIntegration {
 
         @Override
         public void enableRadio(Player player) {
+            if (enableMethod == null) return;
             try {
-                net.darkium.forge.icJukeBox.api.JukeBoxAPI.enableRadio(player);
+                enableMethod.invoke(null, player);
             } catch (Exception ignored) {}
         }
 
         @Override
         public void disableRadio(Player player) {
+            if (disableMethod == null) return;
             try {
-                net.darkium.forge.icJukeBox.api.JukeBoxAPI.disableRadio(player);
+                disableMethod.invoke(null, player);
             } catch (Exception ignored) {}
         }
 
         @Override
         public boolean isRadioEnabled(Player player) {
+            if (hasRadioMethod == null) return false;
             try {
-                return net.darkium.forge.icJukeBox.api.JukeBoxAPI.hasRadioEnabled(player);
+                Object result = hasRadioMethod.invoke(null, player);
+                return result instanceof Boolean && (Boolean) result;
             } catch (Exception e) {
                 return false;
             }
@@ -120,14 +146,33 @@ public class RadioIntegration {
     }
 
     /**
-     * Adapter for JukeBox plugin.
+     * Adapter for JukeBox plugin using reflection.
      */
     private static class JukeBoxAdapter implements RadioAdapter {
+        private Class<?> apiClass;
+        private Method toggleMethod;
+        private Method enableMethod;
+        private Method disableMethod;
+        private Method hasRadioMethod;
+
+        public JukeBoxAdapter() {
+            try {
+                apiClass = Class.forName("me.ele.plugin.jukebox.api.JukeboxAPI");
+                toggleMethod = apiClass.getMethod("toggleRadio", Player.class);
+                enableMethod = apiClass.getMethod("enableRadio", Player.class);
+                disableMethod = apiClass.getMethod("disableRadio", Player.class);
+                hasRadioMethod = apiClass.getMethod("hasRadioEnabled", Player.class);
+            } catch (Exception e) {
+                // API not available
+            }
+        }
+
         @Override
         public boolean toggleRadio(Player player) {
+            if (toggleMethod == null) return false;
             try {
-                me.ele.plugin.jukebox.api.JukeboxAPI.toggleRadio(player);
-                return me.ele.plugin.jukebox.api.JukeboxAPI.hasRadioEnabled(player);
+                toggleMethod.invoke(null, player);
+                return isRadioEnabled(player);
             } catch (Exception e) {
                 return false;
             }
@@ -135,22 +180,26 @@ public class RadioIntegration {
 
         @Override
         public void enableRadio(Player player) {
+            if (enableMethod == null) return;
             try {
-                me.ele.plugin.jukebox.api.JukeboxAPI.enableRadio(player);
+                enableMethod.invoke(null, player);
             } catch (Exception ignored) {}
         }
 
         @Override
         public void disableRadio(Player player) {
+            if (disableMethod == null) return;
             try {
-                me.ele.plugin.jukebox.api.JukeboxAPI.disableRadio(player);
+                disableMethod.invoke(null, player);
             } catch (Exception ignored) {}
         }
 
         @Override
         public boolean isRadioEnabled(Player player) {
+            if (hasRadioMethod == null) return false;
             try {
-                return me.ele.plugin.jukebox.api.JukeboxAPI.hasRadioEnabled(player);
+                Object result = hasRadioMethod.invoke(null, player);
+                return result instanceof Boolean && (Boolean) result;
             } catch (Exception e) {
                 return false;
             }

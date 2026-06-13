@@ -2,7 +2,7 @@ package net.redm1ne.deluxeplayeroptionsred.command;
 
 import net.redm1ne.deluxeplayeroptionsred.DeluxePlayerOptions;
 import net.redm1ne.deluxeplayeroptionsred.command.commands.*;
-import org.bukkit.command.Command;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -25,8 +25,11 @@ public class CommandManager implements CommandExecutor, TabCompleter {
 
     public void registerCommands() {
         // Register main command
-        plugin.getCommand("playeroptions").setExecutor(this);
-        plugin.getCommand("playeroptions").setTabCompleter(this);
+        PluginCommand mainCmd = plugin.getCommand("playeroptions");
+        if (mainCmd != null) {
+            mainCmd.setExecutor(this);
+            mainCmd.setTabCompleter(this);
+        }
 
         // Register individual option commands
         registerCommand("speed", new CommandSpeed(plugin));
@@ -43,18 +46,18 @@ public class CommandManager implements CommandExecutor, TabCompleter {
         registerCommand("options", new CommandOptions(plugin));
     }
 
-    private void registerCommand(String name, CommandExecutor command) {
-        org.bukkit.command.Command cmd = plugin.getCommand(name);
+    private void registerCommand(String name, CommandExecutor executor) {
+        PluginCommand cmd = plugin.getCommand(name);
         if (cmd != null) {
-            cmd.setExecutor(command);
-            if (command instanceof TabCompleter tabCompleter) {
+            cmd.setExecutor(executor);
+            if (executor instanceof TabCompleter tabCompleter) {
                 cmd.setTabCompleter(tabCompleter);
             }
         }
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
             sender.sendMessage(plugin.getMessageManager().get("no-console"));
             return true;
@@ -153,7 +156,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+    public List<String> onTabComplete(CommandSender sender, org.bukkit.command.Command command, String alias, String[] args) {
         List<String> completions = new ArrayList<>();
 
         if (args.length == 1) {

@@ -1,0 +1,139 @@
+####################################################################################################
+# +----------------------------------------------------------------------------------------------+ #
+# |              _____  _                        ____        _   _                               | #
+# |             |  __ \| |                      / __ \      | | (_)                              | #
+# |             | |__) | | __ _ _   _  ___ _ __| |  | |_ __ | |_ _  ___  _ __  ___               | #
+# |             |  ___/| |/ _` | | | |/ _ \ '__| |  | | '_ \| __| |/ _ \| '_ \/ __|              | #
+# |             | |    | | (_| | |_| |  __/ |  | |__| | |_) | |_| | (_) | | | \__ \              | #
+# |             |_|    |_|\__,_|\__, |\___|_|   \____/| .__/ \__|_|\___/|_| |_|___/              | #
+# |                              __/ |                | |                                        | #
+# |                             |___/                 |_|                                        | #
+# |                                                                                              | #
+# |                                                                                              | #
+# |                                                                                              | #
+# |                                                                                              | #
+# |  WIKI:        https://pedrojm96.com/minecraft-plugin/deluxeplayeroptions/                    | #
+# |  BUG REPORTS: https://www.spigotmc.org/resources/deluxeplayeroptions.33033/                  | #
+# |  AUTHOR: PedroJM96 (pedrojm96.com)                                                           | #
+# |  OFFICIAL SERVER: mc.mundopixels.net                                                         | #
+# |                                                                                              | #
+# +----------------------------------------------------------------------------------------------+ #
+####################################################################################################
+
+# +----------------------------------------------------------------------------------------------+ #
+# | Configuration of the items in the bottom bar of the inventory, are given when the player     | #
+# | enters the server.                                                                           | #
+# +----------------------------------------------------------------------------------------------+ #
+
+# +----------------------------------------------------------------------------------------------+ #
+# |                                          Items Nodes                                         | #
+# +----------------------------------------------------------------------------------------------+ #
+# |                                                                                              | #
+# |  enable: To show the item in the inventory to enter the server.                              | #
+# |  name: The name of the item.                                                                 | #
+# |  lore: The description of the item.                                                          | #
+# |  id: The id of the item material (https://www.minecraftinfo.com/idlist.htm).                 | #
+# |  data: Value of the material type of the item.                                               | #
+# |  slot: Location in the inventory of the item.                                                | #
+# |                                                                                              | #
+# +----------------------------------------------------------------------------------------------+ #
+
+# +----------------------------------------------------------------------------------------------+ #
+# | For a detailed explanation of the configuration see this page.                               | #
+# | https://pedrojm96.com/minecraft-plugin/deluxeplayeroptions/po-toggleitems-yml/               | #
+# +----------------------------------------------------------------------------------------------+ #
+
+#Show the action to perform when clicking.
+action:
+  enable: '&7(Right click to enable)'
+  disable: '&7(Right click to disable)'
+  
+#Item for the speed characteristic.
+speed:
+  enable: false
+  name: '&3&lSpeed <action>'
+  material: SUGAR
+  slot: 1
+  lore:
+  - '&7Change the player''s '
+  - '&7movement speed'
+  
+#Item for the jump feature.
+jump:
+  enable: false
+  name: '&3&lJump <action>'
+  material: DIAMOND_BOOTS
+  slot: 2
+  lore:
+  - '&7Change the player''s '
+  - '&7jumping height'
+  
+#Item for the double jump feature.
+doublejump:
+  enable: false
+  name: '&3&lDoubleJump <action>'
+  material: CHAINMAIL_BOOTS
+  slot: 3
+  lore:
+  - '&7Change the player''s '
+  - '&7ability to DoubleJump'
+  
+#Item for the feature flight.
+fly:
+  enable: false
+  name: '&3&lFly <action>'
+  material: FEATHER
+  slot: 4
+  lore:
+  - '&7Change the player''s '
+  - '&7ability to fly'
+  
+#Item for stackers feature.
+stacker:
+  enable: false
+  name: '&3&lStacker <action>'
+  material: MAGMA_CREAM
+  slot: 5
+  lore:
+  - '&7Allows to mount  '
+  - '&7on the head of a player'
+
+#Item for the visibility feature.
+visibility:
+  enable: true
+  name: '&3&lVisibility <action>'
+  material: ENDER_EYE
+  material-old: EYE_OF_ENDER
+  slot: 6
+  lore:
+  - '&7Changes the visibility '
+  - '&7to see players'
+  
+#Item for the chat feature.
+chat:
+  enable: false
+  name: '&3&lChat <action>'
+  material: PAPER
+  slot: 7
+  lore:
+  - '&7Change the ability '
+  - '&7to see and use chat'
+  
+#Item for radio feature.
+radio:
+  enable: false
+  name: '&3&lRadio <action>'
+  material: JUKEBOX
+  slot: 8
+  lore:
+  - '&7Enables or disables '
+  - '&7the radio player'
+#Item for the feature PvP.
+pvp:
+  enable: false
+  name: '&3&lPvP <action>'
+  material: DIAMOND_SWORD
+  slot: 9
+  lore:
+  - '&7Change the player''s '
+  - '&7ability to PvP'

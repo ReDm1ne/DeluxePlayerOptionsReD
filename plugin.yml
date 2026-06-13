@@ -1,0 +1,7 @@
+name: DeluxePlayerOptions
+version: 2.1.2
+main: com.pedrojm96.playeroptions.PlayerOptionsLoader
+api-version: 1.13
+softdepend: [PlaceholderAPI,icJukeBox]
+author: PedroJM96
+description: Advanced player options for the lobby.

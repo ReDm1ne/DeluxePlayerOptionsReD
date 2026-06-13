@@ -69,7 +69,10 @@ public class ToggleItemManager {
                 item.name = toggleConfig.getString(key + ".name", "&3&l" + key);
                 item.material = getMaterial(key);
                 item.slot = toggleConfig.getInt(key + ".slot", 1);
-                item.lore = toggleConfig.getStringList(key + ".lore", new ArrayList<>());
+                item.lore = toggleConfig.getStringList(key + ".lore");
+                if (item.lore == null) {
+                    item.lore = new ArrayList<>();
+                }
                 item.enabled = true;
                 toggleItems.put(key, item);
             }

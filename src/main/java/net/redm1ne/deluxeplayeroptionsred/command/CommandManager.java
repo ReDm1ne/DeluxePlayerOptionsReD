@@ -29,25 +29,27 @@ public class CommandManager implements CommandExecutor, TabCompleter {
         plugin.getCommand("playeroptions").setTabCompleter(this);
 
         // Register individual option commands
-        registerOptionCommand("speed", new CommandSpeed(plugin));
-        registerOptionCommand("fly", new CommandFly(plugin));
-        registerOptionCommand("jump", new CommandJump(plugin));
-        registerOptionCommand("doublejump", new CommandDoubleJump(plugin));
-        registerOptionCommand("stacker", new CommandStacker(plugin));
-        registerOptionCommand("visibility", new CommandVisibility(plugin));
-        registerOptionCommand("chat", new CommandChat(plugin));
-        registerOptionCommand("radio", new CommandRadio(plugin));
-        registerOptionCommand("pvp", new CommandPvP(plugin));
+        registerCommand("speed", new CommandSpeed(plugin));
+        registerCommand("fly", new CommandFly(plugin));
+        registerCommand("jump", new CommandJump(plugin));
+        registerCommand("doublejump", new CommandDoubleJump(plugin));
+        registerCommand("stacker", new CommandStacker(plugin));
+        registerCommand("visibility", new CommandVisibility(plugin));
+        registerCommand("chat", new CommandChat(plugin));
+        registerCommand("radio", new CommandRadio(plugin));
+        registerCommand("pvp", new CommandPvP(plugin));
 
         // Register options menu command
-        registerOptionCommand("options", new CommandOptions(plugin));
+        registerCommand("options", new CommandOptions(plugin));
     }
 
-    private void registerOptionCommand(String name, AbstractOptionCommand command) {
+    private void registerCommand(String name, CommandExecutor command) {
         org.bukkit.command.Command cmd = plugin.getCommand(name);
         if (cmd != null) {
             cmd.setExecutor(command);
-            cmd.setTabCompleter(command);
+            if (command instanceof TabCompleter tabCompleter) {
+                cmd.setTabCompleter(tabCompleter);
+            }
         }
     }
 

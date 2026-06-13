@@ -1,6 +1,7 @@
 package net.redm1ne.deluxeplayeroptionsred.option;
 
 import net.redm1ne.deluxeplayeroptionsred.DeluxePlayerOptions;
+import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 

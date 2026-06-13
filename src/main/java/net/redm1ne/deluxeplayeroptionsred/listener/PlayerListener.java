@@ -403,7 +403,8 @@ public class PlayerListener implements Listener {
         // Play sound
         if (plugin.getConfigManager().isDoubleJumpSoundEnabled()) {
             String soundName = plugin.getConfigManager().getDoubleJumpSound();
-            SoundCompat.playSound(player, soundName, 1.0f, 1.0f);
+            String oldSoundName = plugin.getConfigManager().getDoubleJumpSoundOld();
+            SoundCompat.playSound(player, soundName, oldSoundName);
         }
 
         // Play particles

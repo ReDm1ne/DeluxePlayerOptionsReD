@@ -17,92 +17,95 @@ commands:
     description: Main command for DeluxePlayerOptionsReD
     usage: /<command> [reload|help]
     aliases: [po, dpo, deluxeplayeroptions]
-    permission: playeroptions.admin
+    permission: deluxeplayeroptions.admin
   options:
     description: Open the player options menu
     usage: /<command>
     aliases: [opt]
-    permission: playeroptions.use
+    permission: deluxeplayeroptions.menu
   speed:
     description: Toggle speed mode
     usage: /<command>
     aliases: [spe]
-    permission: playeroptions.speed
+    permission: deluxeplayeroptions.speed
   fly:
     description: Toggle fly mode
     usage: /<command>
     aliases: [fl]
-    permission: playeroptions.fly
+    permission: deluxeplayeroptions.fly
   jump:
     description: Toggle jump boost
     usage: /<command>
     aliases: [jum]
-    permission: playeroptions.jump
+    permission: deluxeplayeroptions.jump
   doublejump:
     description: Toggle double jump
     usage: /<command>
     aliases: [djum]
-    permission: playeroptions.doublejump
+    permission: deluxeplayeroptions.doublejump
   stacker:
     description: Toggle stacker mode
     usage: /<command>
     aliases: [stak]
-    permission: playeroptions.stacker
+    permission: deluxeplayeroptions.stacker
   visibility:
     description: Toggle player visibility
     usage: /<command>
     aliases: [visi]
-    permission: playeroptions.visibility
+    permission: deluxeplayeroptions.visibility
   chat:
     description: Toggle chat visibility
     usage: /<command>
     aliases: [cha]
-    permission: playeroptions.chat
+    permission: deluxeplayeroptions.chat
   radio:
     description: Toggle radio
     usage: /<command>
     aliases: [ra]
-    permission: playeroptions.radio
+    permission: deluxeplayeroptions.radio
   pvp:
     description: Toggle PvP mode
     usage: /<command>
     aliases: [playervsplayer]
-    permission: playeroptions.pvp
+    permission: deluxeplayeroptions.pvp
 
 permissions:
-  playeroptions.admin:
+  deluxeplayeroptions.admin:
     description: Admin permission for reload and other admin commands
     default: op
-  playeroptions.use:
+  deluxeplayeroptions.reload:
+    description: Permission to reload plugin configuration
+    default: op
+  deluxeplayeroptions.menu:
     description: Permission to use the options menu
     default: true
-  playeroptions.speed:
+  deluxeplayeroptions.speed:
     description: Permission to use speed option
     default: true
-  playeroptions.fly:
+  deluxeplayeroptions.fly:
     description: Permission to use fly option
     default: true
-  playeroptions.jump:
+  deluxeplayeroptions.jump:
     description: Permission to use jump boost option
     default: true
-  playeroptions.doublejump:
+  deluxeplayeroptions.doublejump:
     description: Permission to use double jump option
     default: true
-  playeroptions.stacker:
+  deluxeplayeroptions.stacker:
     description: Permission to use stacker option
     default: true
-  playeroptions.visibility:
+  deluxeplayeroptions.visibility:
     description: Permission to use visibility option
     default: true
-  playeroptions.chat:
+  deluxeplayeroptions.chat:
     description: Permission to use chat option
     default: true
-  playeroptions.radio:
+  deluxeplayeroptions.radio:
     description: Permission to use radio option
     default: true
-  playeroptions.pvp:
+  deluxeplayeroptions.pvp:
     description: Permission to use PvP option
     default: true
-  playeroptions.visibility.vip:
+  deluxeplayeroptions.visibility.vip:
     description: Always visible to other players
     default: op
